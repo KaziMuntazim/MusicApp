@@ -123,15 +123,19 @@ public class PlaySong extends AppCompatActivity {
         player = MediaPlayer.create(this , uri);
         player.start();
         seek_bar.setMax(player.getDuration());
+        img_start.setImageResource(R.drawable.paus);
+        ImagAnimation();
     }
     public void ClickStart(View view){
 
         if (player.isPlaying()){
             img_start.setImageResource(R.drawable.play);
             player.pause();
+            stopAnimation();
         }else {
             img_start.setImageResource(R.drawable.paus);
             player.start();
+            ImagAnimation();
         }
     }
     public void ClickNext(View view){
@@ -148,10 +152,17 @@ public class PlaySong extends AppCompatActivity {
         player = MediaPlayer.create(this , uri);
         player.start();
         seek_bar.setMax(player.getDuration());
+        img_start.setImageResource(R.drawable.paus);
+        ImagAnimation();
     }
 
     public void ImagAnimation(){
         Animation animation = AnimationUtils.loadAnimation(this , R.anim.img_roted);
         img_music.startAnimation(animation);
+    }
+    public void stopAnimation(){
+        Animation animation = AnimationUtils.loadAnimation(this , R.anim.stop);
+        img_music.startAnimation(animation);
+
     }
 }
